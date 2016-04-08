@@ -50,7 +50,7 @@
     if(options.containerClass){
       containerClass = " " + options.containerClass;
     }
-    this.$container = $('<div class="bootstrap-tagsinput"'+containerClass+'></div>');
+    this.$container = $('<div class="bootstrap-tagsinput '+containerClass+'"></div>');
     this.$input = $('<input type="text" placeholder="' + this.placeholderText + '"/>').appendTo(this.$container);
 
     this.$element.before(this.$container);
