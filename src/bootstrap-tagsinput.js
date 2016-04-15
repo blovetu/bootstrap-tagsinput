@@ -40,17 +40,17 @@
 
     this.$element = $(element);
     this.$element.hide();
-
+    //是不是select 标签
     this.isSelect = (element.tagName === 'SELECT');
+    //如果是select标签,判断是否可以多选
     this.multiple = (this.isSelect && element.hasAttribute('multiple'));
     this.objectItems = options && options.itemValue;
     this.placeholderText = element.hasAttribute('placeholder') ? this.$element.attr('placeholder') : '';
     this.inputSize = Math.max(1, this.placeholderText.length);
-    var containerClass = "";
+    this.$container = $('<div class="bootstrap-tagsinput"></div>');
     if(options.containerClass){
-      containerClass = " " + options.containerClass;
+      this.$container.addClass(options.containerClass);
     }
-    this.$container = $('<div class="bootstrap-tagsinput '+containerClass+'"></div>');
     this.$input = $('<input type="text" placeholder="' + this.placeholderText + '"/>').appendTo(this.$container);
 
     this.$element.before(this.$container);
@@ -68,7 +68,7 @@
      */
     add: function(item, dontPushVal, options) {
       var self = this;
-
+      //如果已添加的标签个数大于最大标签个数,则直接返回
       if (self.options.maxTags && self.itemsArray.length >= self.options.maxTags)
         return;
 
